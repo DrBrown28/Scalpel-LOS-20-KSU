@@ -868,6 +868,11 @@ KBUILD_CFLAGS_KERNEL += -ffunction-sections -fdata-sections
 LDFLAGS_vmlinux += --gc-sections
 endif
 
+ifdef CONFIG_INLINE_OPTIMIZATION
+KBUILD_CFLAGS	+= -mllvm -inline-threshold=600
+KBUILD_CFLAGS	+= -mllvm -inlinehint-threshold=750
+endif
+
 ifdef CONFIG_LTO_CLANG
 ifdef CONFIG_THINLTO
 lto-clang-flags	:= -flto=thin
