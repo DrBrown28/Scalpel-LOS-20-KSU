@@ -13,7 +13,7 @@ export SUBARCH=arm64
 export CONFIG_BASE=vendor/kona-perf_defconfig
 export CONFIG_DEVICE=vendor/nx659j.config
 #export PATH=home/toolchains/proton-clang-13/bin:$PATH
-export PATH=home/toolchains/clang-11/bin:$PATH
+export PATH=home/toolchains/clang-18/bin:$PATH
 
 echo "#"
 echo "# Menuconfig"

@@ -281,10 +281,6 @@ static struct glink_channel *qcom_glink_alloc_channel(struct qcom_glink *glink,
 
 	channel->glink = glink;
 	channel->name = kstrdup(name, GFP_KERNEL);
-	if (!channel->name) {
-		kfree(channel);
-		return ERR_PTR(-ENOMEM);
-	}
 
 	init_completion(&channel->open_req);
 	init_completion(&channel->open_ack);
@@ -1718,8 +1714,6 @@ static void qcom_glink_rpdev_release(struct device *dev)
 {
 	struct rpmsg_device *rpdev = to_rpmsg_device(dev);
 
-	channel->rpdev = NULL;
-	kfree(rpdev->driver_override);
 	kfree(rpdev);
 }
 
