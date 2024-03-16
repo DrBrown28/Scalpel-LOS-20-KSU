@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # Kernel Details
-VER="-5.9-OC"
+VER="-6.7-OC"
 
 # Vars
 BASE_AK_VER="SCALPEL_By_DrBrown28-DD3BOH"
@@ -13,21 +13,21 @@ export SUBARCH=arm64
 export CONFIG_BASE=vendor/kona-perf_defconfig
 export CONFIG_DEVICE=vendor/nx659j.config
 #export PATH=home/toolchains/proton-clang-13/bin:$PATH
-export PATH=home/toolchains/clang-18/bin:$PATH
-
+export PATH=home/toolchains/clang-19/bin:$PATH
+#export PATH=home/toolchains/Clang-18.0.0-20231114/bin:$PATH
 echo "#"
 echo "# Menuconfig"
 echo "#"
 
 make O=out $CONFIG_BASE $CONFIG_DEVICE;
-make O=out CC=clang AS=llvm-as NM=llvm-nm STRIP=llvm-strip OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabi- menuconfig
+make O=out CC=clang AS=llvm-as NM=llvm-nm STRIP=llvm-strip OBJDUMP=llvm-objdump CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabi- menuconfig
 cp -rf out/.config arch/arm64/configs/$CONFIG_BASE $CONFIG_DEVICE;
 
 echo "#"
 echo "# Compile Kernel"
 echo "#"
 make O=out CC=clang $CONFIG_BASE $CONFIG_DEVICE;
-time make -j$(nproc --all) O=out CC=clang AS=llvm-as NM=llvm-nm STRIP=llvm-strip OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabi-
+time make -j$(nproc --all) O=out CC=clang AS=llvm-as NM=llvm-nm STRIP=llvm-strip OBJDUMP=llvm-objdump CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabi-
 echo -e "\033[1;36mPress enter to continue \e[0m"
 read a1
 
