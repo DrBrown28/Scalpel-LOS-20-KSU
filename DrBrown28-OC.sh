@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # Kernel Details
-VER="-8.9-OC-SUSFS"
+VER="-9.0-OC-SUSFS"
 
 # Vars
 BASE_AK_VER="SCALPEL_By_DrBrown28"
