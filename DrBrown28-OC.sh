@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # Kernel Details
-VER="-9.1-OC"
+VER="-9.2-OC"
 
 # Vars
 BASE_AK_VER="SCALPEL_By_DrBrown28"
@@ -34,6 +34,7 @@ read a1
 # Make a dtb file
 cd out/arch/arm64/boot/
 find dts/vendor/qcom -name '*.dtb' -exec cat {} + > dtb
+find dts/vendor/qcom -name '*.dtbo' -exec cat {} + > dtbo
 ls -a
 
 echo "#"
@@ -41,6 +42,7 @@ echo "# Zipping into a flashable zip!"
 echo "#"
 cp out/arch/arm64/boot/Image.gz root/AnyKernel3/
 cp out/arch/arm64/boot/dtb root/AnyKernel3/
+cp out/arch/arm64/boot/dtbo root/AnyKernel3/
 cd root/Anykernel3
 zip -r9 Scalpel-Kernel-By-DrBrown28-OC.zip *
 cp Scalpel-Kernel-By-DrBrown28-OC.zip ../$HOME
